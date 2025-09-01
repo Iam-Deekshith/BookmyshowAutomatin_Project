@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,29 +46,20 @@ public class MoviePage {
 	}
 
 	// Select first movie from recommended list
-//	public void selectFirstRecommendedMovie() {
-//		if (!recommendedMovies.isEmpty()) {
-//			recommendedMovies.get(0).click();
-//		} else {
-//			throw new RuntimeException("No recommended movies found!");
-//		}
-//	}
-	
-	public void selectFirstRecommendedMovie() {
-	    if (!recommendedMovies.isEmpty()) {
-	        recommendedMovies.get(0).click();
-	        // Wait for movie details page to load
-	        try {
-	            Thread.sleep(3000);
-	        } catch (InterruptedException e) {
-	            Thread.currentThread().interrupt();
-	        }
-	    } else {
-	        throw new RuntimeException("No recommended movies found!");
-	    }
-	}
 
-	
+	public void selectFirstRecommendedMovie() {
+		if (!recommendedMovies.isEmpty()) {
+			recommendedMovies.get(0).click();
+			// Wait for movie details page to load
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		} else {
+			throw new RuntimeException("No recommended movies found!");
+		}
+	}
 
 	// Get movie name
 	public boolean isMovieNameDisplayed() {
@@ -82,19 +72,14 @@ public class MoviePage {
 	}
 
 	// Check if detailed is visible
-//	public boolean isDetailedPageDisplayed() {
-//		return WaitUtils.waitForVisibility(driver, movieDetailed).isDisplayed();
-//	}
-	
-	public boolean isDetailedPageDisplayed() {
-	    try {
-	        return WaitUtils.waitForVisibility(driver, movieDetailed).isDisplayed();
-	    } catch (Exception e) {
-	        return false;  // Just return false if element not found
-	    }
-	}
 
-	
+	public boolean isDetailedPageDisplayed() {
+		try {
+			return WaitUtils.waitForVisibility(driver, movieDetailed).isDisplayed();
+		} catch (Exception e) {
+			return false; // Just return false if element not found
+		}
+	}
 
 	// Check if booking option is available
 	public boolean isBookingOptionAvailable() {
@@ -102,41 +87,39 @@ public class MoviePage {
 	}
 
 	// Navigate to Movies tab
-//	public void clickMoviesTab() {
-//		moviesTab.click();
-//	}
-	
-	public void clickMoviesTab() {
-	    moviesTab.click();
-	    // Wait for movies page to load
-	    try {
-	        Thread.sleep(2000);
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	    }
-	}
 
-	
+	public void clickMoviesTab() {
+		moviesTab.click();
+		// Wait for movies page to load
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+	}
 
 	// Navigate to Explore Upcoming Movies
-//	public void clickExploreUpcomingMovies() {
-//		WaitUtils.waitForClickability(driver, exploreUpcomingMoviesImgLink).click();
-//	}
-	
-	public void clickExploreUpcomingMovies() {
-	    try {
-	        WaitUtils.waitForClickability(driver, exploreUpcomingMoviesImgLink).click();
-	    } catch (Exception e) {
-	        // Re-find the element if it becomes stale
-	        WebElement element = driver.findElement(By.xpath("//a//img[@alt='Coming Soon']"));
-	        WaitUtils.waitForClickability(driver, element).click();
-	    }
-	}
 
-	
+	public void clickExploreUpcomingMovies() {
+		try {
+			WaitUtils.waitForClickability(driver, exploreUpcomingMoviesImgLink).click();
+		} catch (Exception e) {
+			// Re-find the element if it becomes stale
+			WebElement element = driver.findElement(By.xpath("//a//img[@alt='Coming Soon']"));
+			WaitUtils.waitForClickability(driver, element).click();
+		}
+	}
 
 	// Validate "In Cinemas Near You" link
+
 	public boolean isInCinemasNearYouLinkDisplayed() {
-		return WaitUtils.waitForVisibility(driver, inCinemasNearYouImgLink).isDisplayed();
+		try {
+			return WaitUtils.waitForVisibility(driver, inCinemasNearYouImgLink).isDisplayed();
+		} catch (Exception e) {
+			// Re-find the element if it becomes stale
+			WebElement element = driver.findElement(By.xpath("//img[@alt='Now Showing']"));
+			return WaitUtils.waitForVisibility(driver, element).isDisplayed();
+		}
 	}
+
 }
