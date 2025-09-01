@@ -20,12 +20,10 @@ public class ScreenshotUtils {
 
 			File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-			//File destFile = new File(FrameworkConstants.SCREENSHOT_PATH + scenarioName + "_" + timestamp + ".png");
-				
+
 			String cleanScenarioName = scenarioName.replaceAll("[\"<>|?*:/\\\\]", "_");
 			File destFile = new File(FrameworkConstants.SCREENSHOT_PATH + cleanScenarioName + "_" + timestamp + ".png");
 
-			
 			destFile.getParentFile().mkdirs();
 			Files.copy(srcFile.toPath(), destFile.toPath());
 
