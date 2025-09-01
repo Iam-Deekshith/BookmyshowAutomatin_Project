@@ -44,8 +44,8 @@ public class CitySearchPage {
 	private WebElement viewAllCitiesLink;
 
 	@FindBy(xpath = "//li[@class='sc-1a0jimq-0 hhOIxv']")
-	//*[@id="bottomSheet-model-close"]/div/div/div[2]/div[3]/p
-	//*[@id="bottomSheet-model-close"]/div/div/div[2]/div[3]/ul/li[1733]
+	// *[@id="bottomSheet-model-close"]/div/div/div[2]/div[3]/p
+	// *[@id="bottomSheet-model-close"]/div/div/div[2]/div[3]/ul/li[1733]
 	private List<WebElement> allCitiesList;
 
 	// ======= Methods =======
@@ -62,17 +62,11 @@ public class CitySearchPage {
 		return false;
 	}
 
-//	public void clickOnFirstResult() {
-//		WaitUtils.waitForClickability(driver, searchResults.get(0)).click();
-//	}
-	
 	public void clickOnFirstResult() {
-	    if (!searchResults.isEmpty()) {
-	        WaitUtils.waitForClickability(driver, searchResults.get(0)).click();
-	    }
+		if (!searchResults.isEmpty()) {
+			WaitUtils.waitForClickability(driver, searchResults.get(0)).click();
+		}
 	}
-
-	
 
 	public String getTextFromCityDropdown() {
 		return WaitUtils.waitForVisibility(driver, cityDropdown).getText();
@@ -92,43 +86,26 @@ public class CitySearchPage {
 		}
 	}
 
-//	public void openAllCitiesList() {
-//		WaitUtils.waitForClickability(driver, viewAllCitiesLink).click();
-//	}
-	
-	
 	public void openAllCitiesList() {
-	    WaitUtils.waitForClickability(driver, viewAllCitiesLink).click();
-	    // Wait for all cities list to load
-	    try {
-	        Thread.sleep(2000);
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	    }
+		WaitUtils.waitForClickability(driver, viewAllCitiesLink).click();
+		// Wait for all cities list to load
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 
-	
-
-//	public boolean isCityPresentInAllCities(String cityName) {
-//		for (WebElement city : allCitiesList) {
-//			if (city.getText().equalsIgnoreCase(cityName)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-	
 	public boolean isCityPresentInAllCities(String cityName) {
-	    // Just re-find elements to avoid stale reference
-	    List<WebElement> cities = driver.findElements(By.xpath("//li[@class='sc-1a0jimq-0 hhOIxv']"));
-	    for (WebElement city : cities) {
-	        if (city.getText().equalsIgnoreCase(cityName)) {
-	            return true;
-	        }
-	    }
-	    return false;
+		// Just re-find elements to avoid stale reference
+		List<WebElement> cities = driver.findElements(By.xpath("//li[@class='sc-1a0jimq-0 hhOIxv']"));
+		for (WebElement city : cities) {
+			if (city.getText().equalsIgnoreCase(cityName)) {
+				return true;
+			}
+		}
+		return false;
 	}
-
 
 	public boolean isCityPresentInPopularCities(String cityName) {
 		for (WebElement city : cityIcons) {
