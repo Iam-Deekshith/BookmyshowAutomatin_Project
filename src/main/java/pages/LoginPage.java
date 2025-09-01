@@ -61,22 +61,16 @@ public class LoginPage {
 		wait.until(ExpectedConditions.elementToBeClickable(firstSuggestedCity)).click();
 	}
 
-//	public void goToLoginPage() {
-//		wait.until(ExpectedConditions.elementToBeClickable(loginIcon)).click();
-//	}
-	
 	public void goToLoginPage() {
-	    wait.until(ExpectedConditions.elementToBeClickable(loginIcon)).click();
-	    // Wait for login popup to fully load
-	    try {
-	        Thread.sleep(2000);
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	    }
+		wait.until(ExpectedConditions.elementToBeClickable(loginIcon)).click();
+		// Wait for login popup to fully load
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 
-	
-	
 	public void clickContinue() {
 		wait.until(ExpectedConditions.elementToBeClickable(continueBtn)).click();
 	}
@@ -89,18 +83,13 @@ public class LoginPage {
 		wait.until(ExpectedConditions.visibilityOf(popupBackBtn)).click();
 	}
 
-//	public String verifyErrorMessage() {
-//		return errMsg.getText();
-//	}
-	
 	public String verifyErrorMessage() {
-	    try {
-	        return wait.until(ExpectedConditions.visibilityOf(errMsg)).getText();
-	    } catch (Exception e) {
-	        return "";  // Return empty string if no error message
-	    }
+		try {
+			return wait.until(ExpectedConditions.visibilityOf(errMsg)).getText();
+		} catch (Exception e) {
+			return ""; // Return empty string if no error message
+		}
 	}
-
 
 	public boolean isMobileNumberFieldVisible() {
 		return wait.until(ExpectedConditions.visibilityOf(mobileField)).isDisplayed();
@@ -114,19 +103,13 @@ public class LoginPage {
 		}
 	}
 
-//	public boolean isContinueButtonDisbled() {
-//		return wait.until(ExpectedConditions.visibilityOf(disabledContinueBtn)).isDisplayed();
-//	}
-	
 	public boolean isContinueButtonDisbled() {
-	    try {
-	        return wait.until(ExpectedConditions.visibilityOf(disabledContinueBtn)).isDisplayed();
-	    } catch (Exception e) {
-	        return false;  // Just return false if element not found
-	    }
+		try {
+			return wait.until(ExpectedConditions.visibilityOf(disabledContinueBtn)).isDisplayed();
+		} catch (Exception e) {
+			return false; // Just return false if element not found
+		}
 	}
-
-	
 
 	public boolean isContinueButtonEnabled() {
 		return wait.until(ExpectedConditions.visibilityOf(enabledContinueBtn)).isDisplayed();
@@ -138,7 +121,7 @@ public class LoginPage {
 		js.executeScript("arguments[0].value = '';", mobileField);
 		System.out.println("deleted");
 		Thread.sleep(3000);
-	    mobileField.sendKeys(number);
+		mobileField.sendKeys(number);
 	}
 
 	public void closeLoginPopup() {
